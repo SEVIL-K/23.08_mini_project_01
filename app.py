@@ -15,6 +15,11 @@ def home():
 @app.route('/m1')
 def m1_page():
     return render_template('m1.html')
+
+@app.route('/m3')
+def m3_page():
+    return render_template('m3.html')
+
 # ======조호진 추가입니다.=============
 @app.route('/m4')
 def m4_page():
@@ -64,6 +69,28 @@ def guestbook_m1_get():
     m1_comments = list(db.guestbook_m1.find({}, {'_id': False}))
     return jsonify({'result': m1_comments})
 # ==================================================================
+# ========================= m3 POST, GET============================
+@app.route('/guestbook_m3', methods=["POST"])
+def guestbook_m3_post():
+    nickname_receive = request.form['nickname_give']
+    emoticon_receive = request.form['emoticon_give']
+    comment_receive = request.form['comment_give']
+    
+    doc = {
+        'nickname':nickname_receive,
+        'emoticon':emoticon_receive,
+        'comment':comment_receive
+    }
+
+    db.guestbook_m3.insert_one(doc)
+
+    return jsonify({'msg':'댓글 감사합니다!!!!'})
+
+@app.route("/guestbook_m3", methods=["GET"])
+def guestbook_m3_get():
+    m3_comments = list(db.guestbook_m3.find({},{'_id':False}))
+    return jsonify({'result':m3_comments})
+# ==================================================================
 
 # ===================조호진 추가입니다===================
 @app.route("/guestbook_m4", methods=["POST"])
@@ -80,7 +107,6 @@ def guestbook_m4_post():
     # visitor 대신 이제 guestbook_m4로 바꿈
     db.guestbook_m4.insert_one(doc)
     return jsonify({'msg': '저장 완료'})
-
 @app.route("/guestbook_m4", methods=["GET"])
 def guestbook_m4_get():
     #  여기도
