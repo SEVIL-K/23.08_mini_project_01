@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <title>개인 프로필 페이지</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+                showRecord();
+            });
+
+            function makeRecord() {
+                let guest = $('#guest').val()
+                let record = $('#record').val()
+
+                $.ajax({
+                    type: "POST",
+                    url: "/guestbook_m2",
+                    data: {guest_give:guest,record_give:record},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                })
+            }
+
+            function showRecord() {
+                $.ajax({
+                    type: "GET",
+                    url: "/guestbook_m2",
+                    data: {},
+                    success: function (response) {
+                        let records = response['all_records']
+                        for (let i = 0; i < records.length; i++) {
+                           let guest =  records[i]['guest']
+                           let record =  records[i]['record']
+
+                           let temp_html = `<tr>
+                                              <td>${guest}</td>
+                                              <td>${record}</td>
+                                            </tr>`
+                           $('#guest_record').append(temp_html)
+                        }
+                    }
+                })
+            }
+
+        </script>
+
+
+    <style>
+    .wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .pro {
+    width: 200px;
+    margin-top : -350px;
+    margin-left : 500px;
+    color : rgb(70, 130, 180);
+    }
+
+    .image {
+    width: 300px;
+    height : 300px;
+    border-radius : 200px;
+    margin-top : -250px;
+    margin-left : -250px;
+    float: left
+   }
+
+   .button {
+    width : 700px;
+    height : 200px;
+    margin-top : -250px;
+    margin-left : 50px;
+   }
+
+   .bt1 {
+    background-color : rgb(173, 216, 230);
+    border : none;
+    border-radius : 5px;
+    width : 100px;
+    height : 30px;
+    margin-top : 10px;
+    margin-left : 30px;
+
+    color : white;
+    font-size : 20px;
+    }
+
+    .bt2 {
+    background-color : rgb(173, 216, 230);
+    border : none;
+    border-radius : 5px;
+    width : 200px;
+    height : 30px;
+    margin-top : 10px;
+    margin-left : 30px;
+
+    color : white;
+    font-size : 20px;
+    }
+
+    .bt3 {
+    background-color : rgb(173, 216, 230);
+    border : none;
+    border-radius : 5px;
+    width : 600px;
+    height : 50px;
+    margin-top : 20px;
+    margin-left : 30px;
+
+    color : white;
+    font-size : 20px;
+
+    }
+
+    .bt4 {
+    background-color : rgb(173, 216, 230);
+    border : none;
+    border-radius : 5px;
+    width : 600px;
+    height : 150px;
+    margin-top : 20px;
+    margin-left : 30px;
+
+    color : white;
+    font-size : 20px;
+    }
+
+    .bt5 {
+    clear:both;
+    background-color : pink;
+    border : none;
+    border-radius : 5px;
+    width : 160px;
+    height : 30px;
+    margin-top : 0px;
+    margin-left : 0px;
+
+    color : white;
+    font-size : 20px;
+    }
+
+    .bt6 {
+    background-color : rgb(128, 128, 128);
+    border : none;
+    border-radius : 5px;
+    width : 160px;
+    height : 30px;
+    margin-top : 600px;
+    margin-left : -180px;
+
+    color : white;
+    font-size : 18px;
+    clear:both;
+    }
+
+    .records {
+    width : 900px;
+    height : 30px;
+    margin-top : 800px;
+    margin-left : -450px;
+    text-align: center;
+    }
+
+    .record {
+    width : 900px;
+    height : 200px;
+    margin-top : 380px;
+    margin-left : -980px;
+    }
+
+
+
+    td {
+        background-color : rgb(255, 248, 220);
+        font-size : 14px;
+        border-bottom: 1px solid white;
+        border-right: 1px solid white;
+        border-radius : 5px;
+        padding : 10px;
+    }
+
+    th {
+        background-color : rgb(230, 230, 250);
+        font-size : 18px;
+        border-bottom: 1px solid white;
+        border-right: 1px solid white;
+        border-radius : 5px;
+        padding : 10px;
+    }
+
+
+    #guest {
+        width:180px;
+        height:30px;
+        font-size:14px;
+        border:0;
+        border-radius: 10px;
+        outline: none;
+        padding-left: 10px; background-color: rgb(233, 233, 233);
+        text-align: center;
+    }
+
+    #record {
+        width:900px;
+        height:150px;
+        font-size:30px;
+        border:0;
+        border-radius: 10px;
+        outline: none;
+        padding-left: 10px; background-color: rgb(233, 233, 233);
+        text-align: center;
+    }
+
+    #guest + #record {
+    margin-top : 10px;
+    }
+
+
+
+    </style>
+
+
+</head>
+
+
+<body>
+<div class="wrap">
+    <div>
+        <h4 class="pro">공혜진 프로필</h4>
+    </div>
+    <div class="clear">
+        <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSy4qmk8pXT1onRuHxxfU1a2KBQGDOAm6Yaw&usqp=CAU">
+
+        <div class="button">
+            <button type="button" class="bt1"> 공혜진</button>
+            <button type="button" class="bt1"> 팀원</button>
+            <button type="button" class="bt1"> entp</button>
+            <button type="button" class="bt2"> 사진찍기 / 노래듣기</button>
+            <br>
+            <button type="button" class="bt3" onclick="document.location.href='https://blog.naver.com/hj_zheld'">https://blog.naver.com/hj_zheld</button>
+
+            <br>
+            <button type="button" class="bt4"> 안녕하세요. 내일배움캠프 AI 트랙 8기 2조 공혜진입니다.</button>
+        </div>
+    </div>
+    <div class="record">
+        <input type="text" id="guest" placeholder="닉네임을 입력하세요.">
+        <input type="text" id="record" placeholder="내용을 입력해주세요.">
+    </div>
+    <div>
+        <button onclick="makeRecord()" type="button" id="button" class="bt6"> 댓글남기기</button>
+    </div>
+    <div>
+        <div class="records">
+                <table class="records" >
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px;">이름</th>
+                        <th scope="col" style="width:800px;">내용</th>
+                    </tr>
+                    </thead>
+                    <tbody id="guest_record">
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>

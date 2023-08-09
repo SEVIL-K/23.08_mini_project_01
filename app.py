@@ -16,6 +16,11 @@ def home():
 def m1_page():
     return render_template('m1.html')
 
+@app.route('/m2')
+def m2_page():
+    return render_template('m2.html')
+
+
 @app.route('/m3')
 def m3_page():
     return render_template('m3.html')
@@ -68,6 +73,27 @@ def guestbook_m1_get():
     # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
     m1_comments = list(db.guestbook_m1.find({}, {'_id': False}))
     return jsonify({'result': m1_comments})
+# ==================================================================
+# ========================= m2 POST, GET============================
+@app.route('/guestbook_m2', methods=['POST'])
+def guestbook_m2_post():
+        guest_receive = request.form['guest_give']
+        record_receive = request.form['record_give']
+
+        doc = {
+            'guest': guest_receive,
+            'record': record_receive
+        }
+
+        db.guestbook_m2.insert_one(doc)
+
+        return jsonify({'msg': '방명록이 등록되었습니다.'})
+
+
+@app.route('/guestbook_m2', methods=['GET'])
+def guestbook_m2_get():
+        records = list(db.guestbook_m2.find({}, {'_id': False}))
+        return jsonify({'all_records': records})
 # ==================================================================
 # ========================= m3 POST, GET============================
 @app.route('/guestbook_m3', methods=["POST"])
