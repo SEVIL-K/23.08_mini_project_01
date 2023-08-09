@@ -18,7 +18,7 @@ def m1_page():
 # ======조호진 추가입니다.=============
 @app.route('/m4')
 def m4_page():
-   return render_template('introduce.html')
+   return render_template('m4.html')
 # ===========================================
 
 @app.route("/guestbook_team", methods=["POST"])
@@ -83,7 +83,7 @@ def guestbook_m4_post():
 
 @app.route("/guestbook_m4", methods=["GET"])
 def guestbook_m4_get():
-    #  여기도 visitor 로 바꿨습니다.
+    #  여기도
     all_comments = list(db.guestbook_m4.find({},{'_id':False}))
     return jsonify({'result': all_comments})
 # =====================================================
