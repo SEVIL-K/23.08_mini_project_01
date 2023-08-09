@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--  2조 조호진 입니다. -->
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,16 +20,26 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
         rel="stylesheet" />
-    <style>
+    <style type="text/css">
+        /* 하이퍼링크 색과 밑줄 없애기 */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
         * {
             font-family: "Noto Serif KR", serif;
             /* justify-content: space-between; */
             /* border: 1px solid black; */
+            text-align: center;
+            margin: 0 auto;
         }
 
         .profile {
             width: 1000px;
             object-fit: cover;
+            background-color: white;
+            margin-bottom: 0;
         }
 
         .pic1 {
@@ -55,31 +66,36 @@
             /* border: 1px solid black; */
             border-radius: 10px;
         }
-        .Jo_name{
+
+        .Jo_name {
             padding-left: 5px;
             border: 1px solid black;
             border-radius: 10px;
             height: 30px;
             font-size: large;
         }
-        .Jo_team{
+
+        .Jo_team {
             padding-left: 10px;
             border: 1px solid black;
             border-radius: 10px;
             height: 30px;
             font-size: large;
         }
-        .Jo_mbti{
+
+        .Jo_mbti {
             padding-left: 10px;
             border: 1px solid black;
             border-radius: 10px;
             height: 30px;
             font-size: large;
         }
+
         .row2 {
             margin-bottom: 30px;
             float: left;
         }
+
         .Jo_url {
             width: 565px;
             padding-left: 10px;
@@ -88,10 +104,12 @@
             height: 30px;
             font-size: large;
         }
+
         .row3 {
             margin-bottom: 30px;
             float: left;
         }
+
         .Jo_tmi {
             width: 565px;
             padding-left: 10px;
@@ -100,16 +118,18 @@
             height: 30px;
             font-size: large;
         }
+
         .mypic {
             width: 100%;
-            height: 300px;
+            height: 200px;
 
             background-image: linear-gradient(0deg,
                     rgba(0, 0, 0, 0.5),
                     rgba(0, 0, 0, 0.5)),
                 url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA2MTlfOSAg%2FMDAxNjg3MTAxMDEyMzkz.DmS5Y7_dd4Tj5LtEQOyxzteWF7ndOxoIUdhGxQtcnrYg.vTmHsNJcdQD-bS_xrFPV7FA7cmvSIDSgDG1D64e3m4Ug.PNG.salgudoll%2Fp1.png&type=a340");
-            background-position: center 30%;
+            background-position: center 40%;
             background-size: cover;
+            border-radius: 10px;
 
             color: white;
 
@@ -120,11 +140,11 @@
         }
 
         .mypost {
-            width: 95%;
+            width: 100%;
             height: 700px;
-            margin: 70px auto 20px auto;
+            margin: 0px auto 0px auto;
 
-            box-shadow: 0px 0px 3px 0px black;
+            box-shadow: 0px 0px 1px 0px black;
             padding: 20px;
             border-radius: 10px;
             overflow: auto;
@@ -141,12 +161,8 @@
 
         .mycards>.card {
             margin-top: 10px;
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
         }
-
-
-
-        
     </style>
     <script>
         $(document).ready(function () {
@@ -165,13 +181,13 @@
             formData.append("visitor_comment4_give", visitor_comment4);
             formData.append("star_give", star)
 
-            fetch('/guestbook', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+            fetch('/guestbook_m4', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
                 alert(data["msg"]);
                 window.location.reload()
             });
         }
         function show_comment() {
-            fetch('/guestbook').then((res) => res.json()).then((data) => {
+            fetch('/guestbook_m4').then((res) => res.json()).then((data) => {
                 let rows = data['result']
                 $('#comment-list').empty()
                 // console.log(rows)
@@ -200,103 +216,108 @@
 </head>
 
 <body>
-    <div class="mypic" style="width: 1000px;">
-        <h1>조호진의 프로필</h1>
+    <div style="background-color: whitesmoke;">
+        <div class="mypic" style="width: 1000px;">
+            <h1>조호진의 프로필</h1>
 
-    </div>
-    <!-- https://www.delftstack.com/ko/howto/html/text-next-to-image-html/ 옆으로 사진 밀어넣기 -->
-    <div class="profile">
-        <div class="pic1">
-            <!--사진넣을려고 만든 div  -->
         </div>
-        <div class="row1" >
-            <!-- /* https://ojji.wayful.com/2013/12/HTML-set-Two-Parallel-DIVs-columns.html */ -->
-            <div class="col1" style="float: left; width: 25%; margin-right:20px;">
-                <P class="Jo_name">조호진</P>
-                <!-- <input type="text" class="form-control" placeholder="이름" aria-label="First name"> -->
+    </div>
+    <div style="background-color: whitesmoke;">
+        <!-- https://www.delftstack.com/ko/howto/html/text-next-to-image-html/ 옆으로 사진 밀어넣기 -->
+        <div class="profile">
+            <div class="pic1">
+                <!--사진넣을려고 만든 div  -->
             </div>
-            <div class="col" style="float: left; width: 25%; margin-right:20px;">
-                <P class="Jo_team">팀원</P>
-                <!-- <input type="text" class="form-control" placeholder="팀원" aria-label="Last name"> -->
-            </div>
-            <div class="col" style="float: left; width: 25%; margin-right:20px; margin-bottom: 20px;">
-                <P class="Jo_mbti">ISFP</P> 
-                <!-- <input type="text" class="form-control" placeholder="mbti" aria-label="Last name"> -->
-            </div>
-            <div class="row2">
-                <P class="Jo_url"><a href="https://bm4706.tistory.com/">https://bm4706.tistory.com/</a></P>
-                <!-- <input type="text" class="form-control" id="inputAddress" placeholder="블로그 주소"
+            <div class="row1">
+                <!-- /* https://ojji.wayful.com/2013/12/HTML-set-Two-Parallel-DIVs-columns.html */ -->
+                <div class="col1" style="float: left; width: 25%; margin-right:20px;">
+                    <P class="Jo_name">조호진</P>
+                    <!-- <input type="text" class="form-control" placeholder="이름" aria-label="First name"> -->
+                </div>
+                <div class="col" style="float: left; width: 25%; margin-right:20px;">
+                    <P class="Jo_team">팀원</P>
+                    <!-- <input type="text" class="form-control" placeholder="팀원" aria-label="Last name"> -->
+                </div>
+                <div class="col" style="float: left; width: 25%; margin-right:20px; margin-bottom: 20px;">
+                    <P class="Jo_mbti">ISFP</P>
+                    <!-- <input type="text" class="form-control" placeholder="mbti" aria-label="Last name"> -->
+                </div>
+                <div class="row2">
+                    <P class="Jo_url"><a href="https://bm4706.tistory.com/">https://bm4706.tistory.com/</a></P>
+                    <!-- <input type="text" class="form-control" id="inputAddress" placeholder="블로그 주소"
                     style="width: 540px; height: 40px;"> -->
-            </div>
-            <div class="row3">
-                <P class="Jo_tmi">매우매우 집돌이입니다. 해외축구와 RPG게임을 좋아합니다.</P>
-                <!-- <input type="text" class="form-control" id="inputAddress" placeholder="짧은 설명"
+                </div>
+                <div class="row3">
+                    <P class="Jo_tmi">매우매우 집돌이입니다. 해외축구와 RPG게임을 좋아합니다.</P>
+                    <!-- <input type="text" class="form-control" id="inputAddress" placeholder="짧은 설명"
                     style="width: 540px;height: 40px;"> -->
-            </div>
+                </div>
 
-        </div>
-        <div class="mypost" style="margin-top: 200px;">
-            <div class="form-floating mb-3" style="width: 150px; float: left; margin-right: 10px;">
-                <input type="text" class="form-control" id="nickname4" placeholder="url" />
-                <label for="floatingInput">닉네임</label>
             </div>
-            <div class="input-group mb-3" style="width: 150px;float: left; height: 60px;">
-                <label class="input-group-text" for="inputGroupSelect01">아바타</label>
-                <select class="form-select" id="star">
-                    <!-- <option selected>선택</option> -->
-                    <option value="😃">😃</option>
-                    <option value="😁">😁</option>
-                    <option value="😆">😆</option>
-                    <option value="🤣">🤣</option>
-                    <option value="😂">😂</option>
-                </select>
-            </div>
-            <div class="form-floating" style=" width: 400px; float: left; margin-left: 10px;">
-                <textarea class="form-control" placeholder="Leave a comment here" id="comment4"></textarea>
-                <label for="floatingTextarea2">응원댓글</label>
-            </div>
-            <button onclick="save_comment()" type="button" class="btn btn-dark"
-                style="float: right; margin-left: 10px; margin-right: 10px; width: 150px;">
-                댓글 남기기
-            </button>
+            <div class="mypost">
+                <div class="form-floating mb-3" style="width: 150px; float: left; margin-right: 10px;">
+                    <input type="text" class="form-control" id="nickname4" placeholder="url" />
+                    <label for="floatingInput">닉네임</label>
+                </div>
+                <div class="input-group mb-3" style="width: 150px;float: left; height: 60px;">
+                    <label class="input-group-text" for="inputGroupSelect01">아바타</label>
+                    <select class="form-select" id="star">
+                        <!-- <option selected>선택</option> -->
+                        <option value="😃">😃</option>
+                        <option value="😁">😁</option>
+                        <option value="😆">😆</option>
+                        <option value="🤣">🤣</option>
+                        <option value="😂">😂</option>
+                    </select>
+                </div>
+                <div class="form-floating" style=" width: 400px; float: left; margin-left: 10px;">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="comment4"></textarea>
+                    <label for="floatingTextarea2">응원댓글</label>
+                </div>
+                <button onclick="save_comment()" type="button" class="btn btn-dark"
+                    style="float: right; margin-left: 10px; margin-right: 10px; width: 150px;">
+                    댓글 남기기
+                </button>
 
-            <div class="mycards" id="comment-list" style="float: left;">
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>새로운 앨범 너무 멋져요!</p>
-                            <footer class="blockquote-footer">호빵맨</footer>
-                        </blockquote>
+                <div class="mycards" id="comment-list" style="float: left;">
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>새로운 앨범 너무 멋져요!</p>
+                                <footer class="blockquote-footer">호빵맨</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>새로운 앨범 너무 멋져요!</p>
+                                <footer class="blockquote-footer">호빵맨</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>새로운 앨범 너무 멋져요!</p>
+                                <footer class="blockquote-footer">호빵맨</footer>
+                            </blockquote>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>새로운 앨범 너무 멋져요!</p>
-                            <footer class="blockquote-footer">호빵맨</footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>새로운 앨범 너무 멋져요!</p>
-                            <footer class="blockquote-footer">호빵맨</footer>
-                        </blockquote>
-                    </div>
-                </div>
+
+
             </div>
-
-
         </div>
     </div>
-
-
+    <div style="background-color: whitesmoke;">
+        <footer style="width: 1000px; text-align: right; padding-top: 10px;">
+            팀 갈매기살 <a href="http://127.0.0.1:5500/templates/index.html">메인페이지</a>
+            <br><a href="http://localhost:5000/m1">팀장 윤한기님</a>,
+            <a href="#">팀원 공혜진님</a>,
+            <a href="#">팀원 장현웅님</a>
+        </footer>
     </div>
-    <footer>
-        팀 갈매기살 <a href="#">메인페이지</a>  
-        <br>다른 팀원분들 <a href="#">111</a>, <a href="#">222</a>, <a href="#">333</a>
-    </footer>
 </body>
 
 </html>
